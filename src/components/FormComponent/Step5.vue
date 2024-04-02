@@ -3,26 +3,26 @@
         <h1 class="title-step5">¿A quién se lo enviamos?</h1>
         <h2 class="subtitle-step5">Te llegará inmediatamente</h2>
 
-        <div class="field" style="max-width: 400px;">
+        <div class="field">
             <label class="label">Nombre</label>
-            <input type="text" class="input" name="customer[name]" required>
+            <input type="text" class="input" v-model="options.nombre"  required >
         </div>
-        <div class="field" style="max-width: 400px;">
+        <div class="field">
             <label class="label">Correo electrónico</label>
-            <input type="email" class="input"  name="customer[email]" required>
+            <input type="email" class="input" v-model="options.correo" required>
         </div>
-        <div class="field" style="max-width: 400px;">
+        <div class="field">
             <label class="label">Teléfono</label>
-            <input type="number" class="input"  name="customer[phone]" required>
+            <input type="number" class="input" v-model="options.telefono"  pattern="^[6789]\d{8}$" required>
         </div>
-        <div class="field" style="max-width: 400px;">
+        <div class="field">
             <label class="label">Código postal</label>
-            <input type="number" class="input"  name="customer[cp]" required>
+            <input type="number" class="input" v-model="options.codigoPostal" pattern="^[0-5][0-9]{4}$" required>
         </div>
         <div class="notification">No te preocupes, no compartimos tus datos y los usaremos solamente para elaborar este presupuesto.</div>
-        <div class="field" style="max-width: 400px;">
+        <div class="field">
             <label class="checkbox">
-                <input type="checkbox"  name="customer[terms]" required>
+                <input type="checkbox" required>
                 Acepto los <a href="/condiciones-de-uso" target="_blank">Términos y Condiciones</a> y la <a href="/privacidad" target="_blank">Política de privacidad</a>.
             </label>
         </div>
@@ -37,7 +37,27 @@
   
 <script>
   export default {
-    name: 'Step1',
+    name: 'Step5',
+    data() {
+        return {
+            options: {
+                nombre: null,
+                correo: null,
+                telefono: null,
+                codigoPostal: null,
+
+            }
+        }
+    },
+    watch: {
+        'options': {
+          handler(newVal) {
+              this.$emit('data', newVal);
+          },
+          deep: true
+        },
+       
+    },
 }
 </script>
 
@@ -55,6 +75,7 @@ h1{
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  width: 400px;
 }
 .notification{
   background-color: #F5F5F5;
@@ -99,6 +120,9 @@ label{
   }
   h1{
     font-size: 30px;
+  }
+  .field{
+    width: auto;
   }
 }
 </style>

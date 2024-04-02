@@ -12,12 +12,12 @@
 button{
     margin-left: 100px;  
     margin-top: 30px;
-    padding: 10px 50px;
+    padding: 10px 40px;
     color: white;
-    background-color: #0C2E69;
+    background-color: #FF595A;
     font-size: 20px;
     margin-bottom: 10px;
-    border-radius: 30px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
 }
